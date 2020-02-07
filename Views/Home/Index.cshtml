@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+ <div class="container">  
+
+        <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 mt20 mlr-15">
+            <div>
+                <span>Query String :</span>
+                <label id="lblQstr"></label>
+            </div>
+            <div>
+                <span>Id :</span>
+                <label id="lblId"></label>
+            </div>
+            <div>
+                <span>Name :</span>
+                <label id="lblName"></label>
+            </div>
+        </div>
+
+
+    </div>
+
+<script>
+    $(document).ready(function () {
+        var qStr = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        var name = GetParameterValues(qStr, 'Name');
+        var id = GetParameterValues(qStr, 'ID');
+
+        $("#lblQstr").text(qStr)
+        $("#lblId").text(id);
+        $("#lblName").text(name);
+
+        function GetParameterValues(url, param) {
+            //var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');  
+            for (var i = 0; i < url.length; i++) {
+                var urlparam = url[i].split('=');
+                if (urlparam[0] == param) {
+                    return urlparam[1];
+                }
+            }
+        }
+    });  
+</script>
